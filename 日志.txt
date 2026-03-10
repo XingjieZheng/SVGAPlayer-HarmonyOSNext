@@ -1,0 +1,513 @@
+03-10 17:39:16.559   13231-13372   C015B0/org.ope...ayer/NETSTACK  org.opens...gaplayer  I     [http_exec.cpp:431] taskid=-2147483648, size:182085, dns:0.078, connect:10.332, tls:357.618, firstSend:0.553, firstRecv:23.136, total:782.035, redirect:0.000, errCode:0, RespCode:200, httpVer:3, method:GET, osErr:0, saddr:10.2.**.**, sport:33998, daddr:10.2.**.***, dport:8888
+03-10 17:39:16.561   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Download complete: 182085 bytes in 793ms
+03-10 17:39:16.561   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Downloaded 182085 bytes, starting decode...
+03-10 17:39:16.561   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Decoding buffer, size: 182085 bytes
+03-10 17:39:16.561   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] File signature: 78 9c 0
+03-10 17:39:16.568   13231-13231   C03F01/org.ope...gaplayer/NAPI  org.opens...gaplayer  W     [(native_api.cpp:404)(napi_create_string_utf16)] `length` (172514) not equals to strlen(`str`) (2), result may be unexpected
+03-10 17:39:16.569   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] First 100 chars: x�
+03-10 17:39:16.569   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Parsing as binary SVGA...
+03-10 17:39:16.569   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] === Parsing Binary SVGA ===
+03-10 17:39:16.569   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Detected zlib compressed data, decompressing...
+03-10 17:39:16.569   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Decompressing 182085 bytes...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Decompress success: 298237 bytes
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Decompressed: 182085 -> 298237 bytes
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Header: 2.1.0;DD EPNGIHDRu/-gAMAasRGBPLTEGpLvfe~ndnej
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Version: 2.1.0
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] parseMovieData starting, data length: 298237
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 1, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 1, LENGTH_DELIMITED, length: 5
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 6, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 2, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 2, LENGTH_DELIMITED, length: 15
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found MovieParams field, parsing 15 bytes
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 0, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 3, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 3, LENGTH_DELIMITED, length: 16486
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 8, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 8, LENGTH_DELIMITED, length: 96
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 15, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 20, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 30, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 25, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 25, LENGTH_DELIMITED, length: 2111832057
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 27, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 31, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 19, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 24, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 19, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 23, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 18, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 24, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 18, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 23, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 26, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 14, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 19, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 19, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 23, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 26, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 13, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 19, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 31, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 31, LENGTH_DELIMITED, length: -805324802
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 28, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 31, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 31, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.572   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: 13007
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 8, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 19, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 20, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 14, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 8, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 8, LENGTH_DELIMITED, length: 1685051
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 23, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 12, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 23, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 23, LENGTH_DELIMITED, length: 10
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 30, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 8, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 24, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 1, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 1, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 1, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 11, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 6, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 16, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 10, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 25, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 17, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 12, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 16, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 0, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 9, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 9, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 24, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 24, LENGTH_DELIMITED, length: 1816
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 3, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] MovieData: field 29, LENGTH_DELIMITED, length: ...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] MovieData parsed: 0x0, 0fps, 0frames
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Parsed: 60f, 20fps, 300x300
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgavideoentity] ================ Created Video Entity ================
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgavideoentity] Version: 2.1.0, FPS: 20, Frames: 60, Size: Rect(0.00, 0.00, 300.00, 300.00)
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Starting parseFullData, data length: 298237
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 1, wireType: 2, offset: 0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] LENGTH_DELIMITED field 1, length: 5
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 6, wireType: 0, offset: 6
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 2, wireType: 2, offset: 7
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] LENGTH_DELIMITED field 2, length: 15
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Found params field, parsing MovieParams...
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 0, wireType: 1, offset: 23
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 27, wireType: 7, offset: 32
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 16, wireType: 0, offset: 33
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Found field: 0, wireType: 1, offset: 34
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Creating 60 default frames
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.573   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteframeentity] Created frame entity: alpha=1, shapes=0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideospriteentity] Created sprite entity: imageKey=main, frames=60
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgavideoentity] Set 1 sprites
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] === Parse Complete ===
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Images: 0
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Sprites: 1
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] No images parsed, injecting fallback image...
+03-10 17:39:16.574   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] Creating PixelMap from 68 bytes PNG data
+03-10 17:39:16.580   13231-13355   C02B60/org.ope...er/ExtDecoder  org.opens...gaplayer  I     Decode broken data success. Triggered kIncompleteInput feature of skia!
+03-10 17:39:16.580   13231-13355   C02B61/org.ope...r/ImageSource  org.opens...gaplayer  I     CreatePixelMapExtended success, imageId:1773135556574581, desiredSize: (0, 0), imageSize: (1, 1), desiredHdr: 1, hdrType : 1, memoryType : 2, cost 433 us
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgaparser] PixelMap created: 1x1
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgavideoentity] Added image: main
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Fallback image injected: main
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] === Parse Result ===
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Frames: 60
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] FPS: 20
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Size: 300x300
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Sprites: 1
+03-10 17:39:16.581   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaparser] Images: 1
+03-10 17:39:16.581   13231-13231   A03D00/org.ope...aplayer/JSAPP  org.opens...gaplayer  I     SVGA loaded: 60 frames
+03-10 17:39:16.583   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgadynamicentity] Created dynamic entity
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] ================ === Component appeared === ================
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Props - autoPlay: true, loops: 0
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] sourceVideoItem: exists
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Setting video item from prop
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] === Try Initialize Drawer ===
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Video ready: YES
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Canvas ready: false
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Drawer initialized: false
+03-10 17:39:16.586   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  W     [Svgaplayer] Canvas not ready
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] ================ === Canvas Ready === ================
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] === Try Initialize Drawer ===
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Video ready: YES
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Canvas ready: true
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Drawer initialized: false
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] === Setup Drawer ===
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Creating drawer with size 300x300
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgavideoentity] ================ Created Video Entity ================
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgavideoentity] Version: , FPS: 15, Frames: 0, Size: Rect(0.00, 0.00, 0.00, 0.00)
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgadynamicentity] Created dynamic entity
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Sgvadrawer] Created drawer
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] ================ === Canvas Drawer Created === ================
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Context valid: YES
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Canvas size set: 300x300
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Sgvadrawer] Video item set
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Sgvadrawer] Dynamic item set
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Drawer setup completed
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Starting animation...
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] === Start Animation ===
+03-10 17:39:16.589   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgaplayer] Starting: 60 frames @ 20 FPS
+03-10 17:39:16.640   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 1 ===
+03-10 17:39:16.640   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.640   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.640   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.641   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.641   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.641   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.641   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 1 drawn: 1 sprites in 1ms
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 2 ===
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.690   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 2 drawn: 1 sprites in 0ms
+03-10 17:39:16.741   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 3 ===
+03-10 17:39:16.741   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.741   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.742   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.742   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.742   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.742   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.742   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 3 drawn: 1 sprites in 1ms
+03-10 17:39:16.792   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 4 ===
+03-10 17:39:16.792   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.793   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.793   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.793   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.793   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.793   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.793   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 4 drawn: 1 sprites in 1ms
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 5 ===
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.843   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 5 drawn: 1 sprites in 0ms
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 6 ===
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.894   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 6 drawn: 1 sprites in 0ms
+03-10 17:39:16.945   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 7 ===
+03-10 17:39:16.945   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.946   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.946   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.946   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.946   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.946   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.946   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 7 drawn: 1 sprites in 1ms
+03-10 17:39:16.996   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 8 ===
+03-10 17:39:16.996   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:16.996   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:16.996   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:16.996   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:16.996   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:16.997   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:16.997   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 8 drawn: 1 sprites in 1ms
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 9 ===
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.047   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 9 drawn: 1 sprites in 0ms
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 10 ===
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.098   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 10 drawn: 1 sprites in 0ms
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 11 ===
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.149   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 11 drawn: 1 sprites in 0ms
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 12 ===
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.201   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 12 drawn: 1 sprites in 0ms
+03-10 17:39:17.251   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 13 ===
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.252   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 13 drawn: 1 sprites in 1ms
+03-10 17:39:17.301   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 14 ===
+03-10 17:39:17.301   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.301   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.301   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.301   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.301   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.302   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.302   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 14 drawn: 1 sprites in 1ms
+03-10 17:39:17.352   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 15 ===
+03-10 17:39:17.352   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.353   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.353   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.353   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.353   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.353   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.353   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 15 drawn: 1 sprites in 1ms
+03-10 17:39:17.403   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 16 ===
+03-10 17:39:17.403   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.404   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.404   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.404   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.404   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.404   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.404   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 16 drawn: 1 sprites in 1ms
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 17 ===
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.454   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 17 drawn: 1 sprites in 0ms
+03-10 17:39:17.505   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 18 ===
+03-10 17:39:17.505   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.506   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.506   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.506   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.506   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.506   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.506   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 18 drawn: 1 sprites in 1ms
+03-10 17:39:17.555   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 19 ===
+03-10 17:39:17.555   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.556   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.556   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.556   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.556   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.556   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.556   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 19 drawn: 1 sprites in 1ms
+03-10 17:39:17.606   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 20 ===
+03-10 17:39:17.607   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.607   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.607   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.607   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.607   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.608   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.608   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 20 drawn: 1 sprites in 2ms
+03-10 17:39:17.656   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 21 ===
+03-10 17:39:17.656   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.656   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.656   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.656   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.657   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.657   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.657   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 21 drawn: 1 sprites in 1ms
+03-10 17:39:17.686   13231-13350   C03F00/org.ope...r/ArkCompiler  org.opens...gaplayer  I     [gc] SmartGC: app cold start just finished
+03-10 17:39:17.707   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 22 ===
+03-10 17:39:17.707   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.707   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.707   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.707   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.707   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.708   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.708   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 22 drawn: 1 sprites in 1ms
+03-10 17:39:17.757   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 23 ===
+03-10 17:39:17.757   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.758   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.758   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.758   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.758   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.758   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.758   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 23 drawn: 1 sprites in 1ms
+03-10 17:39:17.809   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 24 ===
+03-10 17:39:17.809   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.809   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.809   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.810   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.810   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.810   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.810   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 24 drawn: 1 sprites in 1ms
+03-10 17:39:17.859   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 25 ===
+03-10 17:39:17.859   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.859   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.859   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.860   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.860   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.860   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.860   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 25 drawn: 1 sprites in 1ms
+03-10 17:39:17.909   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 26 ===
+03-10 17:39:17.909   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.909   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.909   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.909   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.910   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.910   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.910   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 26 drawn: 1 sprites in 1ms
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 27 ===
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:17.960   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 27 drawn: 1 sprites in 0ms
+03-10 17:39:18.011   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 28 ===
+03-10 17:39:18.012   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.012   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.012   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.012   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.012   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.013   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.013   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 28 drawn: 1 sprites in 1ms
+03-10 17:39:18.062   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 29 ===
+03-10 17:39:18.062   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.062   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.062   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.062   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.062   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.063   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.063   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 29 drawn: 1 sprites in 1ms
+03-10 17:39:18.113   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 30 ===
+03-10 17:39:18.113   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.113   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.113   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.114   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.114   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.114   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.114   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 30 drawn: 1 sprites in 1ms
+03-10 17:39:18.163   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 31 ===
+03-10 17:39:18.163   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.163   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.163   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.163   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.164   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.164   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.164   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 31 drawn: 1 sprites in 1ms
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 32 ===
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.213   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.214   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 32 drawn: 1 sprites in 0ms
+03-10 17:39:18.265   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 33 ===
+03-10 17:39:18.266   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.266   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.266   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.266   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.266   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.267   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.267   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 33 drawn: 1 sprites in 1ms
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 34 ===
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.316   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 34 drawn: 1 sprites in 0ms
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 35 ===
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully
+03-10 17:39:18.366   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Frame 35 drawn: 1 sprites in 0ms
+03-10 17:39:18.415   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] === Draw Frame 36 ===
+03-10 17:39:18.415   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Clearing canvas 300x300
+03-10 17:39:18.415   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  I     [Svgacanvasdrawer] Video: 60 frames, 1 sprites
+03-10 17:39:18.415   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Processing 1 sprites (matte layers: 0)
+03-10 17:39:18.416   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing image: main, layout: 100x100, hasPixelMap: YES
+03-10 17:39:18.416   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] Drawing PixelMap: 100x100
+03-10 17:39:18.416   13231-13231   A00001/org.ope...er/SVGAPlayer  org.opens...gaplayer  D     [Svgacanvasdrawer] PixelMap drawn successfully

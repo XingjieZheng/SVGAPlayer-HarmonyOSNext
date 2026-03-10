@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "internet_permission_reason",
+      "value": "SVGA播放器需要访问网络加载动画文件"
+    },
+    {
+      "name": "read_media_permission_reason",
+      "value": "SVGA播放器需要读取本地动画文件"
+    }
+  ]
+}

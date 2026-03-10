@@ -1,289 +1,233 @@
-# Archived
-本仓库已经停止维护，你仍然继续阅读源码及创建分叉，但本仓库不会继续更新，也不会回答任何 issue。
+# HarmonyOS NEXT SVGA Player
 
-This repo has stopped maintenance, you can still continue to read the source code and create forks, but this repo will not continue to be updated, nor will it answer any issues.
+HarmonyOS NEXT 原生 SVGA 动画播放器，基于 ArkTS 语言开发。
 
-# SVGAPlayer
+## 📦 功能特性
 
-[简体中文](./readme.zh.md)
+- ✅ **完整播放控制**: 播放、暂停、停止、跳转
+- ✅ **循环播放**: 支持无限循环或指定次数
+- ✅ **Canvas 渲染**: 高性能 Canvas 2D 渲染
+- ✅ **动态元素**: 支持动态替换图片、文本、隐藏元素
+- ✅ **完整日志**: 详细的日志系统，便于排查问题
+- ✅ **单元测试**: 全面的测试覆盖
+- ✅ **符合规范**: 严格遵循 HarmonyOS NEXT 开发规范
 
-## 支持本项目
-
-1. 轻点 GitHub Star，让更多人看到该项目。
-
-## Introduce
-
-SVGAPlayer is a light-weight animation renderer. You use [tools](http://svga.io/designer.html) to export `svga` file from `Adobe Animate CC` or `Adobe After Effects`, and then use SVGAPlayer to render animation on mobile application.
-
-`SVGAPlayer-Android` render animation natively via Android Canvas Library, brings you a high-performance, low-cost animation experience.
-
-If wonder more information, go to this [website](http://svga.io/).
-
-## Usage
-
-Here introduce `SVGAPlayer-Android` usage. Wonder exporting usage? Click [here](http://svga.io/designer.html).
-
-### Install Via Gradle
-
-We host aar file on JitPack, your need to add `JitPack.io` repo `build.gradle`
+## 📁 项目结构
 
 ```
-allprojects {
-    repositories {
-        ...
-        maven { url 'https://jitpack.io' }
+SVGAPlayer_OpenCode2/
+├── library/                      # SVGA 播放器库
+│   ├── src/main/ets/svga/
+│   │   ├── component/           # UI 组件
+│   │   ├── drawer/              # 渲染引擎
+│   │   ├── entity/              # 数据实体
+│   │   ├── parser/              # 解析器
+│   │   └── utils/               # 工具类
+│   └── Index.ets                # 库入口
+│
+├── entry/                        # Demo 应用
+│   └── src/main/ets/pages/
+│       └── Index.ets            # 演示页面
+│
+└── entry/src/ohosTest/          # 单元测试
+    └── ets/test/
+        └── SvgaPlayerTest.ets
+```
+
+## 🚀 快速开始
+
+### 1. 安装依赖
+
+```bash
+# 在项目根目录
+cd library && ohpm install
+cd ../entry && ohpm install
+```
+
+### 2. 在 entry 中使用
+
+```typescript
+import { Svgaplayer, Svgaparser, LogUtils, LogLevel } from '@svga/library'
+
+@Entry
+@Component
+struct MyPage {
+  private playerRef: Svgaplayer | null = null
+
+  aboutToAppear() {
+    // 启用调试日志
+    LogUtils.setLogLevel(LogLevel.DEBUG)
+    
+    // 加载 SVGA 动画
+    const parser = Svgaparser.getInstance()
+    parser.decodeFromUrl('https://example.com/animation.svga', {
+      onComplete: (videoItem) => {
+        this.playerRef?.setVideoItem(videoItem)
+      },
+      onError: (error) => {
+        console.error('加载失败:', error)
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Svgaplayer({ loops: 0, autoPlay: true })
+        .width(300)
+        .height(300)
+        .onReady((ref) => {
+          this.playerRef = ref
+        })
     }
+  }
 }
 ```
 
-Then, add dependency to app `build.gradle`.
+### 3. 播放控制
 
-```
-compile 'com.github.yyued:SVGAPlayer-Android:latest'
-```
+```typescript
+// 播放
+this.playerRef?.startAnimation()
 
-[![](https://jitpack.io/v/yyued/SVGAPlayer-Android.svg)](https://jitpack.io/#yyued/SVGAPlayer-Android)
+// 暂停
+this.playerRef?.pauseAnimation()
 
-### Static Parser Support
-Perser#shareParser should be init(context) in Application or other Activity.
-Otherwise it will report an error:
-`Log.e("SVGAParser", "在配置 SVGAParser context 前, 无法解析 SVGA 文件。")`
+// 停止
+this.playerRef?.stopAnimation()
 
-
-### Matte Support
-Head on over to [Dynamic · Matte Layer](https://github.com/yyued/SVGAPlayer-Android/wiki/Dynamic-%C2%B7-Matte-Layer)
-
-### Proguard-rules
-
-```
--keep class com.squareup.wire.** { *; }
--keep class com.opensource.svgaplayer.proto.** { *; }
+// 跳转到指定帧
+this.playerRef?.gotoFrame(30)
 ```
 
-### Locate files
+### 4. 动态元素
 
-SVGAPlayer could load svga file from Android `assets` directory or remote server.
+```typescript
+// 替换图片
+this.playerRef?.setDynamicImage(pixelMap, 'imageKey')
 
-### Using XML
+// 设置动态文本
+this.playerRef?.setDynamicText('Hello', {
+  fontSize: 24,
+  color: '#FF0000'
+}, 'labelKey')
 
-You may use `layout.xml` to add a `SVGAImageView`.
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.opensource.svgaplayer.SVGAImageView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        app:source="posche.svga"
-        app:autoPlay="true"
-        android:background="#000" />
-
-</RelativeLayout>
+// 隐藏元素
+this.playerRef?.setDynamicHidden(true, 'elementKey')
 ```
 
-The following attributes is allowable:
+## 📋 API 文档
 
-#### source: String
+### Svgaplayer 组件
 
-The svga file path, provide a path relative to Android assets directory, or provide a http url.
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| loops | number | 0 | 循环次数，0为无限 |
+| autoPlay | boolean | true | 自动播放 |
+| antiAlias | boolean | true | 抗锯齿 |
+| fillMode | FillMode | FORWARD | 填充模式 |
 
-#### autoPlay: Boolean
+### 回调函数
 
-Defaults to `true`.
-
-After animation parsed, plays animation automatically.
-
-#### loopCount: Int
-
-Defaults to `0`.
-
-How many times should animation loops. `0` means Infinity Loop.
-
-#### ~~clearsAfterStop: Boolean~~
-
-Defaults to `false`.When the animation is finished, whether to clear the canvas and the internal data of SVGAVideoEntity.
-It is no longer recommended. Developers can control resource release through clearAfterDetached, or manually control resource release through SVGAVideoEntity#clear
-
-#### clearsAfterDetached: Boolean
-
-Defaults to `false`.Clears canvas and the internal data of SVGAVideoEntity after SVGAImageView detached.
-
-#### fillMode: String
-
-Defaults to `Forward`. Could be `Forward`, `Backward`, `Clear`.
-
-`Forward` means animation will pause on last frame after finished.
-
-`Backward` means animation will pause on first frame after finished.
-
-`Clear` after the animation is played, all the canvas content is cleared, but it is only the canvas and does not involve the internal data of SVGAVideoEntity.
-
-### Using code
-
-You may use code to add `SVGAImageView` either.
-
-#### Create a `SVGAImageView` instance.
-
-```kotlin
-SVGAImageView imageView = new SVGAImageView(this);
+```typescript
+interface PlayerCallbacks {
+  onComplete?: () => void          // 播放完成
+  onError?: (error: Error) => void  // 播放错误
+  onFrame?: (frame: number, percentage: number) => void  // 帧更新
+}
 ```
 
-#### Declare a static Parser instance.
+### LogUtils 日志工具
 
-```kotlin
-parser = SVGAParser.shareParser()
+```typescript
+// 设置日志级别
+LogUtils.setLogLevel(LogLevel.DEBUG)
+
+// 打印信息
+LogUtils.info('TAG', 'message')
+LogUtils.debug('TAG', 'message')
+LogUtils.warn('TAG', 'message')
+LogUtils.error('TAG', 'message', error)
+
+// 打印分隔线（用于标记重要流程）
+LogUtils.printDivider('TAG', '开始播放')
+
+// 打印动画状态
+LogUtils.logAnimationState('TAG', 'PLAYING', { frame: 10 })
+
+// 打印性能信息
+LogUtils.logPerformance('TAG', '渲染', 16.5)
 ```
 
-#### Init parser instance 
+## 🧪 运行测试
 
-You should initialize the parser instance with context before usage.
-```
-SVGAParser.shareParser().init(this);
-```
-
-Otherwise it will report an error:
-`Log.e("SVGAParser", "在配置 SVGAParser context 前, 无法解析 SVGA 文件。")`
-
-You can also create `SVGAParser` instance by yourself.
-
-#### Create a `SVGAParser` instance, parse from assets like this.
-
-```kotlin
-parser = new SVGAParser(this);
-// The third parameter is a default parameter, which is null by default. If this method is set, the audio parsing and playback will not be processed internally. The audio File instance will be sent back to the developer through PlayCallback, and the developer will control the audio playback and playback. stop
-parser.decodeFromAssets("posche.svga", object : SVGAParser.ParseCompletion {
-    // ...
-}, object : SVGAParser.PlayCallback {
-    // The default is null, can not be set
-})
+```bash
+# 在 entry 目录下运行测试
+cd entry
+ohpm test
 ```
 
-#### Create a `SVGAParser` instance, parse from remote server like this.
+## 📊 测试覆盖
 
-```kotlin
-parser = new SVGAParser(this);
-// The third parameter is a default parameter, which is null by default. If this method is set, the audio parsing and playback will not be processed internally. The audio File instance will be sent back to the developer through PlayCallback, and the developer will control the audio playback and playback. stop
-parser.decodeFromURL(new URL("https://github.com/yyued/SVGA-Samples/blob/master/posche.svga?raw=true"), new SVGAParser.ParseCompletion() {
-    // ...
-}, object : SVGAParser.PlayCallback {
-    // The default is null, can not be set
-})
+- ✅ Svgarect - 矩形工具
+- ✅ Svgamatrix - 矩阵变换
+- ✅ Svgapathentity - 路径解析
+- ✅ Svgavideoshapeentity - 形状实体
+- ✅ Svgavideospriteframeentity - 帧实体
+- ✅ Svgavideospriteentity - 精灵实体
+- ✅ Svgavideoentity - 视频实体
+- ✅ Svgadynamicentity - 动态元素
+- ✅ 集成测试
+
+## 🎯 实现特性
+
+### 动画驱动
+使用鸿蒙 `requestAnimationFrame` 实现平滑动画循环，自动计算当前帧索引。
+
+### Canvas 渲染
+- 图片精灵渲染（支持动态替换）
+- 矢量形状渲染（fill/stroke/lineDash）
+- 遮罩处理（clip）
+- 变换矩阵应用
+
+### 性能优化
+- Path2D 缓存
+- 位图缓存
+- 共享矩阵/路径对象
+
+## 📝 日志排查
+
+播放器内置完整的日志系统，开启 DEBUG 级别可查看：
+
+```
+[SVGAPlayer] [Svgaparser] ================ Decode from URL ================
+[SVGAPlayer] [Svgaparser] Downloading: https://example.com/animation.svga
+[SVGAPlayer] [Svgaparser] Download complete: 1024 bytes, took 150ms
+[SVGAPlayer] [Svgaparser] Building video entity from JSON
+[SVGAPlayer] [Svgaplayer] ================ Setting video item ================
+[SVGAPlayer] [Svgaplayer] Video item set: 60 frames, 30 FPS
+[SVGAPlayer] [Svgaplayer] ================ Starting animation ================
+[SVGAPlayer] [Svgacanvasdrawer] Rendering frame 0, sprites: 5
+[SVGAPlayer] [Svgacanvasdrawer] Draw frame 0 took 12.50ms
 ```
 
-#### Create a `SVGADrawable` instance then set to `SVGAImageView`, play it as you want.
+## 🔧 依赖要求
 
-```kotlin
-parser = new SVGAParser(this);
-parser.decodeFromURL(..., new SVGAParser.ParseCompletion() {
-    @Override
-    public void onComplete(@NotNull SVGAVideoEntity videoItem) {
-        SVGADrawable drawable = new SVGADrawable(videoItem);
-        imageView.setImageDrawable(drawable);
-        imageView.startAnimation();
-    }
-    @Override
-    public void onError() {
+- HarmonyOS NEXT API 12+
+- ArkTS 语言
+- DevEco Studio 4.0+
 
-    }
-});
-```
+## 📄 许可证
 
-### Cache
+Apache-2.0
 
-`SVGAParser` will not manage any cache, you need to setup cacher by yourself.
+## 🤝 贡献
 
-#### Setup HttpResponseCache
+欢迎提交 Issue 和 PR！
 
-`SVGAParser` depends on `URLConnection`, `URLConnection` uses `HttpResponseCache` to cache things.
+## 📞 支持
 
-Add codes to `Application.java:onCreate` to setup cacher.
+如有问题，请查看日志输出或提交 Issue。
 
-```kotlin
-val cacheDir = File(context.applicationContext.cacheDir, "http")
-HttpResponseCache.install(cacheDir, 1024 * 1024 * 128)
-```
+---
 
-### SVGALogger
-Updated the internal log output, which can be managed and controlled through SVGALogger. It is not activated by default. Developers can also implement the ILogger interface to capture and collect logs externally to facilitate troubleshooting
-Set whether the log is enabled through the `setLogEnabled` method
-Inject a custom ILogger implementation class through the `injectSVGALoggerImp` method
-
-
-```kotlin
-
-// By default, SVGA will not output any log, so you need to manually set it to true
-SVGALogger.setLogEnabled(true)
-
-// If you want to collect the output log of SVGA, you can obtain it in the following way
-SVGALogger.injectSVGALoggerImp(object: ILogger {
-// Implement related interfaces to receive log
-})
-```
-
-### SVGASoundManager
-Added SVGASoundManager to control SVGA audio, you need to manually call the init method to initialize, otherwise follow the default audio loading logic.
-In addition, through SVGASoundManager#setVolume, you can control the volume of SVGA playback. The range is [0f, 1f]. By default, the volume of all SVGA playbacks is controlled.
-And this method can set a second default parameter: SVGAVideoEntity, which means that only the current SVGA volume is controlled, and the volume of other SVGAs remains unchanged.
-
-```kotlin
-// Initialize the audio manager for easy management of audio playback
-// If it is not initialized, the audio will be loaded in the original way by default
-SVGASoundManager.init()
-
-// Release audio resources
-SVGASoundManager.release()
-
-/**
-* Set the volume level, entity is null by default
-* When entity is null, it controls the volume of all audio loaded through SVGASoundManager, which includes the currently playing audio and subsequent loaded audio
-* When entity is not null, only the SVGA audio volume of the instance is controlled, and the others are not affected
-* 
-* @param volume The value range is [0f, 1f]
-* @param entity That is, the instance of SVGAParser callback
-*/
-SVGASoundManager.setVolume(volume, entity)
-```
-
-## Features
-
-Here are many feature samples.
-
-* [Replace an element with Bitmap.](https://github.com/yyued/SVGAPlayer-Android/wiki/Dynamic-Image)
-* [Add text above an element.](https://github.com/yyued/SVGAPlayer-Android/wiki/Dynamic-Text)
-* [Add static layout text above an element.](https://github.com/yyued/SVGAPlayer-Android/wiki/Dynamic-Text-Layout)
-* [Hides an element dynamicaly.](https://github.com/yyued/SVGAPlayer-Android/wiki/Dynamic-Hidden)
-* [Use a custom drawer for element.](https://github.com/yyued/SVGAPlayer-Android/wiki/Dynamic-Drawer)
-
-## APIs
-
-Head on over to [https://github.com/yyued/SVGAPlayer-Android/wiki/APIs](https://github.com/yyued/SVGAPlayer-Android/wiki/APIs)
-
-## CHANGELOG
-
-Head on over to [CHANGELOG](./CHANGELOG.md)
-
-## Credits
-
-### Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-
-<a href="https://github.com/yyued/SVGAPlayer-Android/graphs/contributors"><img src="https://opencollective.com/SVGAPlayer-Android/contributors.svg?width=890&button=false" /></a>
-
-### Backers
-
-Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/SVGAPlayer-Android#backer)]
-
-<a href="https://opencollective.com/SVGAPlayer-Android#backers" target="_blank"><img src="https://opencollective.com/SVGAPlayer-Android/backers.svg?width=890"></a>
-
-### Sponsors
-
-Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/SVGAPlayer-Android#sponsor)]
-
-<a href="https://opencollective.com/SVGAPlayer-Android/sponsor/0/website" target="_blank"><img src="https://opencollective.com/SVGAPlayer-Android/sponsor/0/avatar.svg"></a>
-
+**基于 Android SVGAPlayer 移植，遵循 HarmonyOS NEXT 开发规范**

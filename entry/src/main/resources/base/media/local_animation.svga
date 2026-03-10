@@ -1,0 +1,9 @@
+这是一个占位符SVGA文件。在实际项目中，您需要添加真实的SVGA动画文件。
+SVGA文件是二进制格式，无法在文本中直接表示。
+
+您可以从以下来源获取示例SVGA文件：
+1. SVGA官方示例：https://github.com/svga/SVGA-Samples
+2. 使用SVGA Designer工具创建自定义动画
+3. 从设计工具导出SVGA格式的动画
+
+将真实的SVGA文件重命名为local_animation.svga并替换此文件。

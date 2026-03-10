@@ -1,0 +1,60 @@
+{
+  "deployment": {
+    "version": "1.0.0",
+    "buildType": "release",
+    "targetDevices": ["phone", "tablet"],
+    "minApiLevel": 9,
+    "targetApiLevel": 11
+  },
+  "signing": {
+    "storeFile": "harmonyos.keystore",
+    "storePassword": "${STORE_PASSWORD}",
+    "keyAlias": "harmonyos",
+    "keyPassword": "${KEY_PASSWORD}",
+    "storeType": "PKCS12"
+  },
+  "optimization": {
+    "enableProguard": true,
+    "enableResourceShrinking": true,
+    "enableCodeObfuscation": true,
+    "minifyEnabled": true
+  },
+  "distribution": {
+    "appGallery": {
+      "categories": ["ENTERTAINMENT", "UTILITIES"],
+      "ageRating": "3+",
+      "privacyPolicyUrl": "https://example.com/privacy",
+      "supportUrl": "https://example.com/support"
+    },
+    "thirdParty": {
+      "supportedStores": ["huawei", "xiaomi", "oppo", "vivo"],
+      "multiDexEnabled": true
+    }
+  },
+  "analytics": {
+    "enableCrashReporting": true,
+    "enableUsageAnalytics": true,
+    "enablePerformanceMonitoring": true
+  },
+  "permissions": {
+    "required": [
+      "ohos.permission.INTERNET",
+      "ohos.permission.READ_MEDIA"
+    ],
+    "optional": [
+      "ohos.permission.WRITE_MEDIA"
+    ]
+  },
+  "testing": {
+    "automatedTests": true,
+    "manualTesting": true,
+    "betaTesting": true,
+    "compatibilityTesting": true
+  },
+  "monitoring": {
+    "enableLogging": true,
+    "logLevel": "INFO",
+    "enablePerformanceMetrics": true,
+    "enableErrorTracking": true
+  }
+}

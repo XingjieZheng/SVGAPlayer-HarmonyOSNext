@@ -1,0 +1,123 @@
+name: HarmonyOS CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup HarmonyOS SDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm install -g @ohos/hvigor
+        hvigor clean
+        
+    - name: Run unit tests
+      run: |
+        # 运行单元测试（需要HarmonyOS测试框架支持）
+        echo "Running unit tests..."
+        # hvigor test
+        
+    - name: Build project
+      run: |
+        hvigor assembleHap
+        
+    - name: Code quality check
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        
+    - name: Security scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: harmonyos-build
+        path: |
+          entry/build/outputs/*.hap
+          library/build/outputs/*.har
+        
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: harmonyos-build
+        
+    - name: Setup AppGallery Connect
+      run: |
+        # 配置AppGallery Connect部署
+        echo "Configuring AppGallery Connect..."
+        
+    - name: Deploy to AppGallery Connect
+      run: |
+        # 部署应用到AppGallery Connect
+        echo "Deploying to AppGallery Connect..."
+        
+    - name: Create release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          entry/build/outputs/*.hap
+          library/build/outputs/*.har
+        
+  notify:
+    runs-on: ubuntu-latest
+    needs: [build-and-test, deploy]
+    if: always()
+    
+    steps:
+    - name: Notify Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        text: |
+          Build ${{ job.status }} for ${{ github.repository }}
+          Commit: ${{ github.sha }}
+        
+    - name: Send email notification
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.MAIL_USERNAME }}
+        password: ${{ secrets.MAIL_PASSWORD }}
+        subject: "HarmonyOS SVGAPlayer Build ${{ job.status }}"
+        body: |
+          Build ${{ job.status }} for ${{ github.repository }}
+          
+          Commit: ${{ github.sha }}
+          Branch: ${{ github.ref }}
+          Workflow: ${{ github.workflow }}
+          
+          View details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        to: ${{ secrets.NOTIFICATION_EMAIL }}
+        from: HarmonyOS CI/CD <ci@example.com>

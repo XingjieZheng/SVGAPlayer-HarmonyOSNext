@@ -1,0 +1,13 @@
+{
+  "description": "SVGA Player Unit Tests",
+  "driver": {
+    "type": "OHOSTestRunner",
+    "moduleName": "entry_test"
+  },
+  "models": [
+    {
+      "name": "SvgaPlayerTest",
+      "path": "test/SvgaPlayerTest"
+    }
+  ]
+}

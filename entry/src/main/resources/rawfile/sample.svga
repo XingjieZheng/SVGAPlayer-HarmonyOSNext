@@ -1,0 +1,1 @@
+{"movie":{"fps":20,"frames":60,"viewBox":{"width":300,"height":300}},"images":{"0":"test_image"},"sprites":[{"imageKey":"0","frames":[{"alpha":1,"layout":{"x":0,"y":0,"width":100,"height":100},"transform":[1,0,0,1,50,50]}]}]}

@@ -1,0 +1,23 @@
+{
+  "module": {
+    "name": "library",
+    "type": "har",
+    "deviceTypes": [
+      "phone",
+      "tablet",
+      "tv",
+      "wearable",
+      "car"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:internet_permission_reason"
+      },
+      {
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:read_media_permission_reason"
+      }
+    ]
+  }
+}
