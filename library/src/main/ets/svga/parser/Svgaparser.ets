@@ -14,8 +14,11 @@ import {
   SpriteEntityParams,
   FrameEntityParams,
   LayoutParams,
-  TransformParams
+  TransformParams,
+  ShapeEntityParams,
+  ShapeStyleParams
 } from '../types/SVGATypes'
+
 
 export interface ParseCompletion {
   onComplete: (videoItem: Svgavideoentity) => void
@@ -61,6 +64,36 @@ function decodeUtf8(bytes: Uint8Array): string {
     }
   }
   return result
+}
+
+
+
+// 图片类型检测函数
+function isPngData(data: Uint8Array): boolean {
+  // PNG 魔数: 89 50 4E 47 0D 0A 1A 0A
+  return data.length >= 8 && 
+    data[0] === 0x89 && data[1] === 0x50 && 
+    data[2] === 0x4E && data[3] === 0x47 &&
+    data[4] === 0x0D && data[5] === 0x0A &&
+    data[6] === 0x1A && data[7] === 0x0A
+}
+
+function isJpgData(data: Uint8Array): boolean {
+  // JPEG 魔数: FF D8 FF
+  return data.length >= 3 && 
+    data[0] === 0xFF && data[1] === 0xD8 && data[2] === 0xFF
+}
+
+function isImageData(data: Uint8Array): boolean {
+  // 检测是否为图片二进制数据（PNG 或 JPEG）
+  return isPngData(data) || isJpgData(data)
+}
+
+function isAudioData(data: Uint8Array): boolean {
+  // 检测是否为音频数据（ID3 标签）
+  // ID3 标签魔数: 73 68 51 ('I' 'D' '3')
+  return data.length >= 3 && 
+    data[0] === 73 && data[1] === 68 && data[2] === 51
 }
 
 // Movie Parse Result
@@ -186,6 +219,7 @@ export class Svgaparser {
     let width = 300
     let height = 300
     let decompressedData: Uint8Array = data
+    let parsed: FullParseResult | null = null
 
     try {
       // 检查是否是 zlib 压缩数据 (0x78 0x9c 是 zlib 的默认压缩头)
@@ -196,7 +230,7 @@ export class Svgaparser {
       }
 
       const headerStr = this.readString(decompressedData, 0, Math.min(200, decompressedData.length))
-      LogUtils.debug(Svgaparser.TAG, 'Header: ' + headerStr.substring(0, 50))
+      // Debug: LogUtils.debug(Svgaparser.TAG, 'Header: ' + headerStr.substring(0, 50))
 
       const versionMatch = headerStr.match(/(\d+\.\d+\.\d+)/)
       if (versionMatch) {
@@ -204,19 +238,16 @@ export class Svgaparser {
         LogUtils.info(Svgaparser.TAG, `Version: ${version}`)
       }
 
-      // Protobuf 解析
+      // Protobuf 解析 - 使用 parseFullData 一次性解析所有数据
       const parser = new ProtobufParser(decompressedData)
-      const parsed = parser.parseMovieData()
+      parsed = parser.parseFullData()
 
       if (parsed.fps > 0) fps = parsed.fps
       if (parsed.frames > 0) frames = parsed.frames
       if (parsed.width > 0) width = parsed.width
       if (parsed.height > 0) height = parsed.height
-
-      LogUtils.info(Svgaparser.TAG, `Parsed: ${frames}f, ${fps}fps, ${width}x${height}`)
-
-    } catch (e) {
-      LogUtils.warn(Svgaparser.TAG, 'Parse warning: ' + String(e))
+    } catch (decompressError) {
+      LogUtils.error(Svgaparser.TAG, 'Error during decompression/parsing: ' + String(decompressError))
     }
 
     const videoEntity = new Svgavideoentity({
@@ -228,10 +259,7 @@ export class Svgaparser {
 
     // 解析图片和精灵数据
     try {
-      const parser = new ProtobufParser(decompressedData)
-      const parseResult = parser.parseFullData()
-
-      if (!parseResult) {
+      if (!parsed) {
         LogUtils.warn(Svgaparser.TAG, 'parseFullData returned undefined, using defaults')
         // Create default sprite
         const spriteParams: SpriteEntityParams = {
@@ -243,58 +271,62 @@ export class Svgaparser {
         videoEntity.setSprites([sprite])
       } else {
         // 添加图片到 videoEntity
-        if (parseResult.images.size > 0) {
-          LogUtils.info(Svgaparser.TAG, `Extracting ${parseResult.images.size} images...`)
-          const imageEntries = parseResult.images.entries()
+        if (parsed.images.size > 0) {
+          LogUtils.info(Svgaparser.TAG, `Extracting ${parsed.images.size} images...`)
+          const imageEntries = parsed.images.entries()
           for (const entry of imageEntries) {
             const key = entry[0]
             const imageData = entry[1]
-            try {
-              const pixelMap = await this.createPixelMapFromPng(imageData)
+
+            // 跳过音频数据
+            if (isAudioData(imageData)) {
+              LogUtils.info(Svgaparser.TAG, `Skipping audio data for key: ${key}`)
+              continue
+            }
+
+            // 检查是否是有效的图片数据
+            if (isImageData(imageData)) {
+              LogUtils.info(Svgaparser.TAG, `Processing image ${key}: ${imageData.length} bytes, first bytes: ${imageData[0].toString(16)} ${imageData[1].toString(16)} ${imageData[2].toString(16)}`)
+              const pixelMap = await this.createPixelMapFromBytes(imageData)
               if (pixelMap) {
                 videoEntity.addImage(key, pixelMap)
-                LogUtils.info(Svgaparser.TAG, `Added image: ${key} (${imageData.length} bytes)`)
+                LogUtils.info(Svgaparser.TAG, `Added image: ${key}`)
+              } else {
+                LogUtils.warn(Svgaparser.TAG, `Failed to create PixelMap for: ${key}`)
               }
-            } catch (e) {
-              LogUtils.warn(Svgaparser.TAG, `Failed to create PixelMap for ${key}: ${String(e)}`)
+            } else {
+              LogUtils.warn(Svgaparser.TAG, `Data for key ${key} is not a valid image (${imageData.length} bytes), first bytes: ${imageData.slice(0, 10).join(',')}`)
             }
           }
         }
 
-        // 添加精灵
-        if (parseResult.sprites.length > 0) {
-          LogUtils.info(Svgaparser.TAG, `Creating ${parseResult.sprites.length} sprites`)
-          const spriteEntities = parseResult.sprites.map(spriteParams => {
-            return new Svgavideospriteentity(spriteParams)
-          })
+        // 添加精灵到 videoEntity
+        if (parsed.sprites.length > 0) {
+          LogUtils.info(Svgaparser.TAG, `Creating ${parsed.sprites.length} sprites...`)
+          const spriteEntities: Svgavideospriteentity[] = []
+          for (const spriteParams of parsed.sprites) {
+            const sprite = new Svgavideospriteentity(spriteParams)
+            spriteEntities.push(sprite)
+          }
           videoEntity.setSprites(spriteEntities)
         } else {
           // 创建默认精灵
-          const spriteParams: SpriteEntityParams = {
-            imageKey: 'main',
+          LogUtils.warn(Svgaparser.TAG, 'No sprites found, creating default sprite')
+          const defaultSprite = new Svgavideospriteentity({
+            imageKey: parsed.images.keys().next().value || 'main',
             matteKey: '',
             frames: this.createDefaultFrames(frames)
-          }
-          const sprite = new Svgavideospriteentity(spriteParams)
-          videoEntity.setSprites([sprite])
+          })
+          videoEntity.setSprites([defaultSprite])
         }
       }
-    } catch (e) {
-      LogUtils.warn(Svgaparser.TAG, 'Failed to parse sprites/images: ' + String(e))
-      // 创建默认精灵作为后备
-      const spriteParams: SpriteEntityParams = {
-        imageKey: 'main',
-        matteKey: '',
-        frames: this.createDefaultFrames(frames)
-      }
-      const sprite = new Svgavideospriteentity(spriteParams)
-      videoEntity.setSprites([sprite])
+    } catch (parseError) {
+      LogUtils.error(Svgaparser.TAG, 'Error processing parsed data: ' + String(parseError))
     }
 
     LogUtils.info(Svgaparser.TAG, `=== Parse Complete ===`)
     LogUtils.info(Svgaparser.TAG, `Images: ${videoEntity.getImageCount()}`)
     LogUtils.info(Svgaparser.TAG, `Sprites: ${videoEntity.getSprites().length}`)
-
     // Fallback: inject a minimal 1x1 PixelMap if no images parsed
     if (videoEntity.getImageCount() === 0) {
       try {
@@ -304,7 +336,7 @@ export class Svgaparser {
         const base64Helper = new util.Base64Helper()
         const imgBuf = base64Helper.decodeSync(pngBase64)
         const imageData = new Uint8Array(imgBuf)
-        const pixelMap = await this.createPixelMapFromPng(imageData)
+        const pixelMap = await this.createPixelMapFromBytes(imageData)
         if (pixelMap) {
           videoEntity.addImage('main', pixelMap)
           LogUtils.info(Svgaparser.TAG, 'Fallback image injected: main')
@@ -320,7 +352,7 @@ export class Svgaparser {
   }
 
   private async decompressZlib(data: Uint8Array): Promise<Uint8Array> {
-    LogUtils.debug(Svgaparser.TAG, `Decompressing ${data.length} bytes...`)
+      // Debug: LogUtils.debug(Svgaparser.TAG, `Decompressing ${data.length} bytes...`)
 
     try {
       // 估算解压后大小 (通常压缩比 1:2 到 1:10)
@@ -334,7 +366,7 @@ export class Svgaparser {
       if (result.status === 0) {
         // 截取实际大小的数据
         const actualData = new Uint8Array(destBuffer, 0, result.destLen)
-        LogUtils.debug(Svgaparser.TAG, `Decompress success: ${result.destLen} bytes`)
+        // Debug: LogUtils.debug(Svgaparser.TAG, `Decompress success: ${result.destLen} bytes`)
         return actualData
       } else {
         throw new Error(`Decompress failed with status: ${result.status}`)
@@ -346,12 +378,15 @@ export class Svgaparser {
     }
   }
 
-  private async createPixelMapFromPng(pngData: Uint8Array): Promise<image.PixelMap | null> {
+  private async createPixelMapFromBytes(imageData: Uint8Array): Promise<image.PixelMap | null> {
     try {
-      LogUtils.debug(Svgaparser.TAG, `Creating PixelMap from ${pngData.length} bytes PNG data`)
+      LogUtils.info(Svgaparser.TAG, `Creating PixelMap from ${imageData.length} bytes, first bytes: ${imageData[0].toString(16)} ${imageData[1].toString(16)} ${imageData[2].toString(16)}`)
 
-      // 使用 ImageKit 解码 PNG 数据
-      const buffer = pngData.buffer.slice(pngData.byteOffset, pngData.byteOffset + pngData.byteLength)
+      // 创建图片数据的独立拷贝，避免 ArrayBuffer 共享问题
+      const buffer = new ArrayBuffer(imageData.byteLength)
+      new Uint8Array(buffer).set(imageData)
+      
+      LogUtils.info(Svgaparser.TAG, `Buffer created: ${buffer.byteLength} bytes`)
 
       // 创建图片源
       const imageSource = image.createImageSource(buffer)
@@ -367,11 +402,11 @@ export class Svgaparser {
 
       // 获取图片信息
       const imageInfo = await pixelMap.getImageInfo()
-      LogUtils.debug(Svgaparser.TAG, `PixelMap created: ${imageInfo.size.width}x${imageInfo.size.height}`)
+      LogUtils.info(Svgaparser.TAG, `PixelMap created: ${imageInfo.size.width}x${imageInfo.size.height}`)
 
       return pixelMap
     } catch (e) {
-      LogUtils.error(Svgaparser.TAG, 'Failed to create PixelMap from PNG', e as Error)
+      LogUtils.error(Svgaparser.TAG, `Failed to create PixelMap: ${(e as Error).message}`, e as Error)
       return null
     }
   }
@@ -398,7 +433,7 @@ export class Svgaparser {
         const imageData = new Uint8Array(imageBuffer)
 
         // 创建 PixelMap
-        const pixelMap = await this.createPixelMapFromPng(imageData)
+        const pixelMap = await this.createPixelMapFromBytes(imageData)
         if (pixelMap) {
           videoEntity.addImage(key, pixelMap)
           LogUtils.info(Svgaparser.TAG, `Added image from JSON: ${key}`)
@@ -410,7 +445,7 @@ export class Svgaparser {
   }
 
   private createDefaultFrames(frameCount: number): FrameEntityParams[] {
-    LogUtils.debug(Svgaparser.TAG, `Creating ${frameCount} default frames`)
+    // Debug: LogUtils.debug(Svgaparser.TAG, `Creating ${frameCount} default frames`)
     const frames: FrameEntityParams[] = []
     for (let i = 0; i < frameCount; i++) {
       const frame: FrameEntityParams = {
@@ -458,7 +493,7 @@ export class Svgaparser {
     const spriteEntities = sprites.map((sprite, index) => {
       const s = sprite as Record<string, object>
       const imageKey = String(s['imageKey'] ?? '')
-      LogUtils.debug(Svgaparser.TAG, `Sprite ${index}: imageKey=${imageKey}`)
+      // Debug: LogUtils.debug(Svgaparser.TAG, `Sprite ${index}: imageKey=${imageKey}`)
 
       return new Svgavideospriteentity({
         imageKey: imageKey,
@@ -539,7 +574,7 @@ class ProtobufParser {
     }
 
     try {
-      LogUtils.debug(Svgaparser.TAG, `Starting parseFullData, data length: ${this.data.length}`)
+      // Debug: LogUtils.debug(Svgaparser.TAG, `Starting parseFullData, data length: ${this.data.length}`)
       // SVGA 2.1.0 文件结构 (MovieEntity):
       // field 1: version (string)
       // field 2: params (MovieParams - contains width, height, fps, frames)
@@ -558,14 +593,19 @@ class ProtobufParser {
 
         const fieldNum = tag >> 3
         const wireType = tag & 0x07
-        LogUtils.debug(Svgaparser.TAG, `Found field: ${fieldNum}, wireType: ${wireType}, offset: ${this.offset}`)
+        // Debug: LogUtils.debug(Svgaparser.TAG, `Found field: ${fieldNum}, wireType: ${wireType}, offset: ${this.offset}`)
         this.offset++
 
         if (wireType === WireType.LENGTH_DELIMITED) {
           const length = this.readVarint()
-          LogUtils.debug(Svgaparser.TAG, `LENGTH_DELIMITED field ${fieldNum}, length: ${length}`)
+          const varintLength = this.getVarintLength(this.data, this.offset)
+          this.offset += varintLength
+          // Debug: LogUtils.debug(Svgaparser.TAG, `LENGTH_DELIMITED field ${fieldNum}, length: ${length}`)
           if (length > 0 && this.offset + length <= this.data.length) {
-            const fieldData = this.data.slice(this.offset, this.offset + length)
+            // 创建独立拷贝，避免共享 ArrayBuffer
+            const fieldDataView = this.data.slice(this.offset, this.offset + length)
+            const fieldData = new Uint8Array(fieldDataView.length)
+            fieldData.set(fieldDataView)
 
             // field 2 = params (MovieParams)
             if (fieldNum === 2) {
@@ -615,7 +655,7 @@ class ProtobufParser {
     }
 
     try {
-      LogUtils.debug(Svgaparser.TAG, 'parseMovieData starting, data length: ' + this.data.length)
+      // Debug: LogUtils.debug(Svgaparser.TAG, 'parseMovieData starting, data length: ' + this.data.length)
       while (this.offset < this.data.length) {
         const tag = this.data[this.offset]
         if (tag === undefined || tag === 0) {
@@ -624,16 +664,18 @@ class ProtobufParser {
 
         const fieldNum = tag >> 3
         const wireType = tag & 0x07
-        LogUtils.debug(Svgaparser.TAG, `MovieData: field ${fieldNum}, LENGTH_DELIMITED, length: ...`)
+        // Debug: LogUtils.debug(Svgaparser.TAG, `MovieData: field ${fieldNum}, LENGTH_DELIMITED, length: ...`)
         this.offset++
 
         if (wireType === WireType.LENGTH_DELIMITED) {
           const length = this.readVarint()
-          LogUtils.debug(Svgaparser.TAG, `MovieData: field ${fieldNum}, LENGTH_DELIMITED, length: ${length}`)
+          const varintLength = this.getVarintLength(this.data, this.offset)
+          this.offset += varintLength
+          // Debug: LogUtils.debug(Svgaparser.TAG, `MovieData: field ${fieldNum}, LENGTH_DELIMITED, length: ${length}`)
           if (length > 0 && this.offset + length <= this.data.length) {
             const fieldData = this.data.slice(this.offset, this.offset + length)
             if (fieldNum === 2) {
-              LogUtils.debug(Svgaparser.TAG, 'Found MovieParams field, parsing ' + length + ' bytes')
+              // Debug: LogUtils.debug(Svgaparser.TAG, 'Found MovieParams field, parsing ' + length + ' bytes')
               this.parseMovieParams(fieldData, result)
             }
             this.offset += length
@@ -666,16 +708,16 @@ class ProtobufParser {
 
         if (fieldNum === 1) {
           result.width = value
-          LogUtils.debug(Svgaparser.TAG, `MovieParams: width = ${value}`)
+          // Debug: LogUtils.debug(Svgaparser.TAG, `MovieParams: width = ${value}`)
         } else if (fieldNum === 2) {
           result.height = value
-          LogUtils.debug(Svgaparser.TAG, `MovieParams: height = ${value}`)
+          // Debug: LogUtils.debug(Svgaparser.TAG, `MovieParams: height = ${value}`)
         } else if (fieldNum === 3) {
           result.fps = value
-          LogUtils.debug(Svgaparser.TAG, `MovieParams: fps = ${value}`)
+          // Debug: LogUtils.debug(Svgaparser.TAG, `MovieParams: fps = ${value}`)
         } else if (fieldNum === 4) {
           result.frames = value
-          LogUtils.debug(Svgaparser.TAG, `MovieParams: frames = ${value}`)
+          // Debug: LogUtils.debug(Svgaparser.TAG, `MovieParams: frames = ${value}`)
         }
       }
     }
@@ -683,7 +725,7 @@ class ProtobufParser {
 
   private parseImagesField(data: Uint8Array, images: Map<string, Uint8Array>): void {
     let offset = 0
-    let imageCount = 0
+    let currentKey: string | null = null
 
     while (offset < data.length) {
       if (offset >= data.length) {
@@ -699,33 +741,45 @@ class ProtobufParser {
       const wireType = tag & 0x07
       offset++
 
-      LogUtils.debug(Svgaparser.TAG, `parseImageEntry called with ${data.length - offset} bytes`)
-      LogUtils.debug(Svgaparser.TAG, `Image entry: field ${fieldNum}, wireType ${wireType}`)
+      // Debug: LogUtils.debug(Svgaparser.TAG, `Image map entry: field ${fieldNum}, wireType ${wireType}, offset ${offset}`)
 
       if (wireType === WireType.LENGTH_DELIMITED) {
         const length = this.readVarintFrom(data, offset)
         const lengthBytes = this.getVarintLength(data, offset)
         offset += lengthBytes
 
-        LogUtils.debug(Svgaparser.TAG, `Image entry field ${fieldNum}: length=${length}, offset=${offset}`)
+        // Debug: LogUtils.debug(Svgaparser.TAG, `Image entry field ${fieldNum}: length=${length}, offset=${offset}`)
 
         if (length > 0 && offset + length <= data.length) {
+          const fieldData = data.slice(offset, offset + length)
+
           // field 1 = key (string)
           if (fieldNum === 1) {
-            const keyData = data.slice(offset, offset + length)
-            const key = decodeUtf8(keyData)
-            LogUtils.debug(Svgaparser.TAG, `Image key: ${key}`)
-            // 存储 key 稍后使用
+            currentKey = decodeUtf8(fieldData)
+            // Debug: LogUtils.debug(Svgaparser.TAG, `Image key parsed: ${currentKey}`)
             offset += length
           }
           // field 2 = value (bytes) - 实际图片数据
           else if (fieldNum === 2) {
-            const imageData = data.slice(offset, offset + length)
-            // 使用递增的 key 名
-            const key = `image_${imageCount}`
-            images.set(key, imageData)
-            imageCount++
-            LogUtils.debug(Svgaparser.TAG, `Image data: ${length} bytes, key=${key}`)
+            // 必须已经有 key
+            if (currentKey !== null) {
+              // 创建独立拷贝，避免共享 ArrayBuffer
+              const imageDataCopy = new Uint8Array(fieldData.length)
+              imageDataCopy.set(fieldData)
+              images.set(currentKey, imageDataCopy)
+              LogUtils.info(Svgaparser.TAG, `Image parsed: key=${currentKey}, size=${length} bytes, first bytes: ${imageDataCopy[0].toString(16)} ${imageDataCopy[1].toString(16)} ${imageDataCopy[2].toString(16)}`)
+              currentKey = null  // 重置，准备解析下一个 entry
+            } else {
+              LogUtils.warn(Svgaparser.TAG, `Image value without key, using fallback key`)
+              const fallbackKey = `image_${images.size}`
+              // 创建独立拷贝
+              const imageDataCopy = new Uint8Array(fieldData.length)
+              imageDataCopy.set(fieldData)
+              images.set(fallbackKey, imageDataCopy)
+            }
+            offset += length
+          } else {
+            // 其他字段，跳过
             offset += length
           }
         } else {
@@ -733,7 +787,7 @@ class ProtobufParser {
           break
         }
       } else {
-        LogUtils.debug(Svgaparser.TAG, `Image entry: non-LENGTH_DELIMITED wireType ${wireType}`)
+        // Debug: LogUtils.debug(Svgaparser.TAG, `Image entry: non-LENGTH_DELIMITED wireType ${wireType}`)
         // 跳过非 LENGTH_DELIMITED 字段
         if (wireType === WireType.VARINT) {
           offset += this.getVarintLength(data, offset)
@@ -745,7 +799,7 @@ class ProtobufParser {
       }
     }
 
-    LogUtils.info(Svgaparser.TAG, `Parsed ${imageCount} image entries, total images: ${images.size}`)
+    LogUtils.info(Svgaparser.TAG, `Parsed ${images.size} images`)
   }
 
   private parseSprite(data: Uint8Array): SpriteEntityParams | null {
@@ -755,9 +809,12 @@ class ProtobufParser {
       const frames: FrameEntityParams[] = []
 
       let offset = 0
+      LogUtils.debug(Svgaparser.TAG, `parseSprite starting, data length: ${data.length}`)
+      
       while (offset < data.length) {
         const tag = data[offset]
         if (tag === undefined || tag === 0) {
+          LogUtils.debug(Svgaparser.TAG, `parseSprite: tag is undefined or 0 at offset ${offset}, breaking`)
           break
         }
 
@@ -765,10 +822,14 @@ class ProtobufParser {
         const wireType = tag & 0x07
         offset++
 
+        LogUtils.debug(Svgaparser.TAG, `parseSprite: fieldNum=${fieldNum}, wireType=${wireType}`)
+
         if (wireType === WireType.LENGTH_DELIMITED) {
           const length = this.readVarintFrom(data, offset)
           const lengthBytes = this.getVarintLength(data, offset)
           offset += lengthBytes
+
+          LogUtils.debug(Svgaparser.TAG, `parseSprite: LENGTH_DELIMITED field ${fieldNum}, length=${length}, offset=${offset}`)
 
           if (length > 0 && offset + length <= data.length) {
             const fieldData = data.slice(offset, offset + length)
@@ -776,24 +837,39 @@ class ProtobufParser {
             // field 1 = imageKey
             if (fieldNum === 1) {
               imageKey = decodeUtf8(fieldData)
+              LogUtils.debug(Svgaparser.TAG, `parseSprite: imageKey=${imageKey}`)
             }
-            // field 2 = matteKey
+            // field 2 = frames (repeated)
             else if (fieldNum === 2) {
-              matteKey = decodeUtf8(fieldData)
-            }
-            // field 3 = frames
-            else if (fieldNum === 3) {
-              // 解析帧数据
+              LogUtils.debug(Svgaparser.TAG, `parseSprite: parsing frame...`)
               const frame = this.parseFrame(fieldData)
               if (frame) {
                 frames.push(frame)
+                LogUtils.debug(Svgaparser.TAG, `parseSprite: frame pushed, total frames=${frames.length}, frame has ${frame.shapes?.length || 0} shapes`)
+              } else {
+                LogUtils.warn(Svgaparser.TAG, `parseSprite: parseFrame returned null`)
               }
+            }
+            // field 3 = matteKey
+            else if (fieldNum === 3) {
+              matteKey = decodeUtf8(fieldData)
+              LogUtils.debug(Svgaparser.TAG, `parseSprite: matteKey=${matteKey}`)
+            } else {
+              LogUtils.debug(Svgaparser.TAG, `parseSprite: skipping unknown field ${fieldNum}`)
             }
 
             offset += length
           }
         } else if (wireType === WireType.VARINT) {
+          LogUtils.debug(Svgaparser.TAG, `parseSprite: skipping VARINT field ${fieldNum}`)
           offset += this.getVarintLength(data, offset)
+        } else {
+          LogUtils.debug(Svgaparser.TAG, `parseSprite: skipping wire type ${wireType}`)
+          if (wireType === WireType.FIXED64) {
+            offset += 8
+          } else if (wireType === WireType.FIXED32) {
+            offset += 4
+          }
         }
       }
 
@@ -804,6 +880,14 @@ class ProtobufParser {
           layout: { x: 0, y: 0, width: 100, height: 100 },
           transform: { a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 }
         })
+        LogUtils.warn(Svgaparser.TAG, `Sprite ${imageKey} has no frames, creating default frame`)
+      } else {
+        // 统计所有帧的 shapes 数量
+        let totalShapes = 0
+        for (const frame of frames) {
+          totalShapes += frame.shapes?.length || 0
+        }
+        LogUtils.info(Svgaparser.TAG, `Sprite ${imageKey} parsed with ${frames.length} frames, total shapes: ${totalShapes}`)
       }
 
       return {
@@ -822,11 +906,17 @@ class ProtobufParser {
       let alpha = 1.0
       let layout: LayoutParams = { x: 0, y: 0, width: 100, height: 100 }
       let transform: TransformParams = { a: 1, b: 0, c: 0, d: 1, tx: 0, ty: 0 }
+      let clipPath = ''
+      const shapes: ShapeEntityParams[] = []
+      let shapeCount = 0
 
       let offset = 0
+      LogUtils.debug(Svgaparser.TAG, `parseFrame starting, data length: ${data.length}`)
+      
       while (offset < data.length) {
         const tag = data[offset]
         if (tag === undefined || tag === 0) {
+          LogUtils.debug(Svgaparser.TAG, `parseFrame: tag is undefined or 0 at offset ${offset}, breaking`)
           break
         }
 
@@ -834,17 +924,22 @@ class ProtobufParser {
         const wireType = tag & 0x07
         offset++
 
+        LogUtils.debug(Svgaparser.TAG, `parseFrame: fieldNum=${fieldNum}, wireType=${wireType}, offset=${offset}`)
+
         if (wireType === WireType.VARINT) {
           const value = this.readVarintFrom(data, offset)
           offset += this.getVarintLength(data, offset)
 
           if (fieldNum === 1) {
             alpha = value / 255.0
+            LogUtils.debug(Svgaparser.TAG, `parseFrame: alpha set to ${alpha}`)
           }
         } else if (wireType === WireType.LENGTH_DELIMITED) {
           const length = this.readVarintFrom(data, offset)
           const lengthBytes = this.getVarintLength(data, offset)
           offset += lengthBytes
+
+          LogUtils.debug(Svgaparser.TAG, `parseFrame: LENGTH_DELIMITED field ${fieldNum}, length=${length}`)
 
           if (offset + length <= data.length) {
             const fieldData = data.slice(offset, offset + length)
@@ -852,21 +947,58 @@ class ProtobufParser {
             // field 2 = layout
             if (fieldNum === 2) {
               layout = this.parseLayout(fieldData)
+              LogUtils.debug(Svgaparser.TAG, `parseFrame: layout parsed: ${JSON.stringify(layout)}`)
             }
             // field 3 = transform
             else if (fieldNum === 3) {
               transform = this.parseTransform(fieldData)
+              LogUtils.debug(Svgaparser.TAG, `parseFrame: transform parsed`)
+            }
+            // field 4 = clipPath
+            else if (fieldNum === 4) {
+              clipPath = decodeUtf8(fieldData)
+              LogUtils.debug(Svgaparser.TAG, `parseFrame: clipPath parsed: ${clipPath.substring(0, 20)}...`)
+            }
+            // field 5 = shapes (repeated)
+            else if (fieldNum === 5) {
+              LogUtils.debug(Svgaparser.TAG, `parseFrame: parsing shape at offset ${offset}, length ${length}`)
+              const shape = this.parseShape(fieldData)
+              if (shape) {
+                shapes.push(shape)
+                shapeCount++
+                LogUtils.debug(Svgaparser.TAG, `parseFrame: shape pushed, shapes.length=${shapes.length}`)
+              } else {
+                LogUtils.warn(Svgaparser.TAG, `parseFrame: parseShape returned null`)
+              }
+            } else {
+              LogUtils.debug(Svgaparser.TAG, `parseFrame: skipping unknown field ${fieldNum}`)
             }
 
             offset += length
+          } else {
+            LogUtils.warn(Svgaparser.TAG, `parseFrame: field data exceeds buffer, offset=${offset}, length=${length}, data.length=${data.length}`)
+          }
+        } else {
+          LogUtils.debug(Svgaparser.TAG, `parseFrame: skipping wire type ${wireType}`)
+          // Skip other wire types
+          if (wireType === WireType.VARINT) {
+            offset += this.getVarintLength(data, offset)
+          } else if (wireType === WireType.FIXED64) {
+            offset += 8
+          } else if (wireType === WireType.FIXED32) {
+            offset += 4
           }
         }
       }
 
+      LogUtils.info(Svgaparser.TAG, `Frame parsed: alpha=${alpha.toFixed(2)}, shapes=${shapes.length}, shapeCount=${shapeCount}`)
+
       return {
         alpha: alpha,
         layout: layout,
-        transform: transform
+        transform: transform,
+        clipPath: clipPath,
+        shapes: shapes
       }
     } catch (e) {
       LogUtils.warn(Svgaparser.TAG, 'parseFrame error: ' + String(e))
@@ -877,6 +1009,8 @@ class ProtobufParser {
   private parseLayout(data: Uint8Array): LayoutParams {
     let x = 0, y = 0, width = 0, height = 0
     let offset = 0
+    
+    LogUtils.debug(Svgaparser.TAG, `parseLayout: data length=${data.length}`)
 
     while (offset < data.length) {
       const tag = data[offset]
@@ -887,11 +1021,33 @@ class ProtobufParser {
       const fieldNum = tag >> 3
       const wireType = tag & 0x07
       offset++
+      
+      LogUtils.debug(Svgaparser.TAG, `parseLayout: fieldNum=${fieldNum}, wireType=${wireType}`)
 
       if (wireType === WireType.VARINT) {
         const value = this.readVarintFrom(data, offset)
         offset += this.getVarintLength(data, offset)
+        
+        LogUtils.debug(Svgaparser.TAG, `parseLayout: VARINT value=${value}`)
 
+        if (fieldNum === 1) x = value
+        else if (fieldNum === 2) y = value
+        else if (fieldNum === 3) width = value
+        else if (fieldNum === 4) height = value
+      } else if (wireType === WireType.FIXED32) {
+        // Read 32-bit float
+        const value = this.readFloat32From(data, offset)
+        offset += 4
+        LogUtils.debug(Svgaparser.TAG, `parseLayout: FIXED32 value=${value}`)
+        if (fieldNum === 1) x = value
+        else if (fieldNum === 2) y = value
+        else if (fieldNum === 3) width = value
+        else if (fieldNum === 4) height = value
+      } else if (wireType === WireType.FIXED64) {
+        // Read 64-bit float
+        const value = this.readFloat64From(data, offset)
+        offset += 8
+        LogUtils.debug(Svgaparser.TAG, `parseLayout: FIXED64 value=${value}`)
         if (fieldNum === 1) x = value
         else if (fieldNum === 2) y = value
         else if (fieldNum === 3) width = value
@@ -900,6 +1056,7 @@ class ProtobufParser {
     }
 
     const result: LayoutParams = { x, y, width, height }
+    LogUtils.debug(Svgaparser.TAG, `parseLayout: result=${JSON.stringify(result)}`)
     return result
   }
 
@@ -944,6 +1101,148 @@ class ProtobufParser {
     return result
   }
 
+  private parseShape(data: Uint8Array): ShapeEntityParams | null {
+    try {
+      let type = 0 // 0=SHAPE, 1=RECT, 2=ELLIPSE, 3=KEEP
+      let shapePath = ''
+      let styles: ShapeStyleParams | undefined = undefined
+      let transform: TransformParams | undefined = undefined
+
+      let offset = 0
+      while (offset < data.length) {
+        const tag = data[offset]
+        if (tag === undefined || tag === 0) {
+          break
+        }
+
+        const fieldNum = tag >> 3
+        const wireType = tag & 0x07
+        offset++
+
+        if (wireType === WireType.VARINT) {
+          const value = this.readVarintFrom(data, offset)
+          offset += this.getVarintLength(data, offset)
+
+          // field 1 = type (ShapeType enum)
+          if (fieldNum === 1) {
+            type = value
+          }
+        } else if (wireType === WireType.LENGTH_DELIMITED) {
+          const length = this.readVarintFrom(data, offset)
+          const lengthBytes = this.getVarintLength(data, offset)
+          offset += lengthBytes
+
+          if (offset + length <= data.length) {
+            const fieldData = data.slice(offset, offset + length)
+
+            // field 2 = shape (ShapeArgs)
+            if (fieldNum === 2) {
+              shapePath = this.parseShapeArgs(fieldData)
+            }
+            // field 10 = styles (ShapeStyle)
+            else if (fieldNum === 10) {
+              styles = this.parseShapeStyle(fieldData)
+            }
+            // field 11 = transform
+            else if (fieldNum === 11) {
+              transform = this.parseTransform(fieldData)
+            }
+
+            offset += length
+          }
+        }
+      }
+
+      // If type is KEEP (3), mark as keep
+      const isKeep = (type === 3)
+
+      LogUtils.debug(Svgaparser.TAG, `Parsed shape: type=${type}, path=${shapePath.substring(0, 30)}..., hasStyles=${!!styles}`)
+
+      return {
+        shapePath: shapePath,
+        styles: styles,
+        transform: transform,
+        isKeep: isKeep
+      }
+    } catch (e) {
+      LogUtils.warn(Svgaparser.TAG, 'parseShape error: ' + String(e))
+      return null
+    }
+  }
+
+  private parseShapeArgs(data: Uint8Array): string {
+    // ShapeArgs has field 1 = d (SVG path string)
+    let offset = 0
+    while (offset < data.length) {
+      const tag = data[offset]
+      if (tag === undefined || tag === 0) {
+        break
+      }
+
+      const fieldNum = tag >> 3
+      const wireType = tag & 0x07
+      offset++
+
+      if (wireType === WireType.LENGTH_DELIMITED) {
+        const length = this.readVarintFrom(data, offset)
+        const lengthBytes = this.getVarintLength(data, offset)
+        offset += lengthBytes
+
+        if (fieldNum === 1 && offset + length <= data.length) {
+          return decodeUtf8(data.slice(offset, offset + length))
+        }
+        offset += length
+      }
+    }
+    return ''
+  }
+
+  private parseShapeStyle(data: Uint8Array): ShapeStyleParams {
+    const styles: ShapeStyleParams = {}
+
+    let offset = 0
+    while (offset < data.length) {
+      const tag = data[offset]
+      if (tag === undefined || tag === 0) {
+        break
+      }
+
+      const fieldNum = tag >> 3
+      const wireType = tag & 0x07
+      offset++
+
+      if (wireType === WireType.LENGTH_DELIMITED) {
+        const length = this.readVarintFrom(data, offset)
+        const lengthBytes = this.getVarintLength(data, offset)
+        offset += lengthBytes
+
+        if (offset + length <= data.length) {
+          const fieldData = data.slice(offset, offset + length)
+
+          // field 1 = fill
+          if (fieldNum === 1) {
+            styles.fill = decodeUtf8(fieldData)
+          }
+          // field 2 = stroke
+          else if (fieldNum === 2) {
+            styles.stroke = decodeUtf8(fieldData)
+          }
+
+          offset += length
+        }
+      } else if (wireType === WireType.VARINT) {
+        const value = this.readVarintFrom(data, offset)
+        offset += this.getVarintLength(data, offset)
+
+        // field 3 = strokeWidth
+        if (fieldNum === 3) {
+          styles.strokeWidth = value
+        }
+      }
+    }
+
+    return styles
+  }
   private readVarint(): number {
     return this.readVarintFrom(this.data, this.offset)
   }
@@ -973,6 +1272,15 @@ class ProtobufParser {
       }
     }
     return length
+  }
+
+  private readFloat32From(data: Uint8Array, offset: number): number {
+    const buffer = new ArrayBuffer(4)
+    const view = new DataView(buffer)
+    for (let i = 0; i < 4; i++) {
+      view.setUint8(i, data[offset + i])
+    }
+    return view.getFloat32(0, true)
   }
 
   private readFloat64From(data: Uint8Array, offset: number): number {

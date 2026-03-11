@@ -5,7 +5,7 @@
 
 import { Svgavideospriteframeentity } from './Svgavideospriteframeentity'
 import { LogUtils } from '../utils/LogUtils'
-import { SpriteEntityParams, FrameEntityParams } from '../types/SVGATypes'
+import { SpriteEntityParams, FrameEntityParams, ShapeEntityParams } from '../types/SVGATypes'
 
 export class Svgavideospriteentity {
   private static readonly TAG: string = 'Svgavideospriteentity'
@@ -20,7 +20,37 @@ export class Svgavideospriteentity {
       this.matteKey = entity.matteKey ?? null
 
       if (entity.frames) {
-        this.frames = entity.frames.map(frame => new Svgavideospriteframeentity(frame))
+        // 实现 shapes 跨帧继承机制：如果当前帧没有 shapes，继承上一帧的
+        let lastShapes: ShapeEntityParams[] = []
+        const processedFrames: FrameEntityParams[] = []
+
+        for (let i = 0; i < entity.frames.length; i++) {
+          const frame = entity.frames[i]
+          // 检查当前帧是否有有效的 shapes（非空数组）
+          const hasValidShapes = frame.shapes && frame.shapes.length > 0
+
+          if (hasValidShapes) {
+            // 有 shapes，更新 lastShapes 并使用原始帧
+            lastShapes = frame.shapes as ShapeEntityParams[]
+            processedFrames.push(frame)
+          } else {
+            // 无 shapes，继承上一帧的 shapes
+            const inheritedFrame: FrameEntityParams = {
+              alpha: frame.alpha,
+              layout: frame.layout,
+              transform: frame.transform,
+              clipPath: frame.clipPath,
+              shapes: lastShapes.length > 0 ? [...lastShapes] : []
+            }
+            processedFrames.push(inheritedFrame)
+          }
+        }
+
+        // 调试：统计有多少个 frame 有 shapes
+        const framesWithShapes = processedFrames.filter(f => f.shapes && f.shapes.length > 0).length
+        LogUtils.info(Svgavideospriteentity.TAG, `Shapes inheritance: ${framesWithShapes}/${processedFrames.length} frames have shapes`)
+
+        this.frames = processedFrames.map(frame => new Svgavideospriteframeentity(frame))
       }
 
       LogUtils.debug(Svgavideospriteentity.TAG,

@@ -52,15 +52,19 @@ export class Svgavideoentity {
   addImage(key: string, pixelMap: image.PixelMap): void {
     // 移除 .matte 后缀
     const bitmapKey = key.endsWith('.matte') ? key.slice(0, -6) : key
+    LogUtils.info(Svgavideoentity.TAG, `>>> STORING image: original='${key}', bitmapKey='${bitmapKey}', mapSize=${this.imageMap.size}`)
     this.imageMap.set(bitmapKey, pixelMap)
-    LogUtils.debug(Svgavideoentity.TAG, `Added image: ${bitmapKey}`)
+    LogUtils.info(Svgavideoentity.TAG, `>>> STORED image: ${bitmapKey}, mapSize now=${this.imageMap.size}`)
   }
 
   /**
    * 获取图片资源
    */
   getImage(key: string): image.PixelMap | undefined {
-    return this.imageMap.get(key)
+    LogUtils.info(Svgavideoentity.TAG, `>>> RETRIEVING image: key='${key}', mapSize=${this.imageMap.size}, availableKeys=[${Array.from(this.imageMap.keys()).join(', ')}]`)
+    const result = this.imageMap.get(key)
+    LogUtils.info(Svgavideoentity.TAG, `>>> RETRIEVED image: key='${key}', found=${result ? 'YES' : 'NO'}`)
+    return result
   }
 
   /**
