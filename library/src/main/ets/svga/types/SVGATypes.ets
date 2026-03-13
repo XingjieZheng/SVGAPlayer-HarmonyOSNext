@@ -104,3 +104,13 @@ export interface VideoEntityConstructorParams {
   frames?: number
   videoSize?: LayoutParams
 }
+
+// 完整解析结果（用于解析器）
+export class FullParseResult {
+  fps: number = 0
+  frames: number = 0
+  width: number = 0
+  height: number = 0
+  images: Map<string, Uint8Array> = new Map()
+  sprites: SpriteEntityParams[] = []
+}

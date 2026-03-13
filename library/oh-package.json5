@@ -5,7 +5,10 @@
   "main": "Index.ets",
   "author": "",
   "license": "Apache-2.0",
-  "dependencies": {},
+  "dependencies": {
+    "@ohos/protobufjs": "^3.0.1"
+  },
   "devDependencies": {},
-  "types": "Index.ets"
+  "types": "Index.ets",
+  "dynamicDependencies": {}
 }
